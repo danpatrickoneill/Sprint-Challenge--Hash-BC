@@ -33,6 +33,16 @@ def proof_of_work(last_proof):
     #  TODO: Your code here
     while valid_proof(last_hash, proof) is False:
         proof += random.randint(1, 100)
+        if timer() - start > 10:
+            r = requests.get(url=node + "/last_proof")
+            data = r.json()
+            new_hash = generate_hash(data.get('proof'))[-6:]
+            if new_hash != last_hash:
+                # print('Restarting...')
+                last_hash = new_hash
+                start = timer()
+                proof = 0
+
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
 
