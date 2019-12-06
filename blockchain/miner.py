@@ -10,6 +10,11 @@ from timeit import default_timer as timer
 import random
 
 
+def generate_hash(p):
+    proof = f'{p}'.encode()
+    return hashlib.sha256(proof).hexdigest()
+
+
 def proof_of_work(last_proof):
     """
     Multi-Ouroboros of Work Algorithm
@@ -24,8 +29,10 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 0
+    last_hash = generate_hash(last_proof)[-6:]
     #  TODO: Your code here
-
+    while valid_proof(last_hash, proof) is False:
+        proof += 3
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
 
@@ -40,7 +47,7 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+    return last_hash == generate_hash(proof)[:6]
 
 
 if __name__ == '__main__':
