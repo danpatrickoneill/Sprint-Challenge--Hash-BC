@@ -32,7 +32,7 @@ def proof_of_work(last_proof):
     last_hash = generate_hash(last_proof)[-6:]
     #  TODO: Your code here
     while valid_proof(last_hash, proof) is False:
-        proof += 3
+        proof += random.randint(1, 100)
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
 
