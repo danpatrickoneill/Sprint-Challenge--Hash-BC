@@ -6,13 +6,12 @@ from hashtables import (HashTable,
 
 
 def get_indices_of_item_weights(weights, length, limit):
-    ht = HashTable(16)
+    ht = HashTable(length)
 
     """
     YOUR CODE HERE
     """
     for i, weight in enumerate(weights):
-        print(weight, i)
         hash_table_insert(ht, weight, i)
 
     for i, weight in enumerate(weights):
