@@ -15,9 +15,6 @@ def reconstruct_trip(tickets, length):
     ht = HashTable(length)
     route = [None] * length
 
-    """
-    YOUR CODE HERE
-    """
     start = None
     for ticket in tickets:
         if ticket.source == 'NONE':

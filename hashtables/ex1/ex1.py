@@ -8,9 +8,6 @@ from hashtables import (HashTable,
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(length)
 
-    """
-    YOUR CODE HERE
-    """
     for i, weight in enumerate(weights):
         hash_table_insert(ht, weight, i)
 
